@@ -32,7 +32,7 @@ function LandingScreen({ navigation }) {
                 const isLoggedInData = storage.getString('isLoggedIn');
                 if (isLoggedInData) {
                     setIsLoggedIn(JSON.parse(isLoggedInData));
-                   // navigation.navigate('Home');
+                    navigation.navigate('Home');
                 }
             }
             checkLoggedIn();
@@ -41,33 +41,34 @@ function LandingScreen({ navigation }) {
 
     return (
         <ImageBackground 
-            source={require('../../assets/land.jpg')}
+            source={require('./assets/landingscreen1.png')}
             style={styles.background}
             resizeMode="cover"
         >
             <StatusBar barStyle="light-content" />
-
-            {/* Overlay for readability */}
             <View style={styles.overlay}>
-                <Text style={styles.welcomeText}>
-                    "Hello, Trekkers! Ready to explore Nepal's lush greenery and hidden gems?"
-                </Text>
+                <View style={styles.bottomContainer}>
+                    {/* Welcome Text */}
+                    <Text style={styles.welcomeText}>
+                        Hello, Trekkers! Ready to explore Nepal's lush greenery and hidden gems?
+                    </Text>
 
-                <SafeAreaView style={styles.buttonContainer}>
-                    <TouchableOpacity 
-                        style={styles.button} 
-                        onPress={() => navigation.navigate('Login')}
-                    >
-                        <Text style={styles.buttonText}>Login</Text>
-                    </TouchableOpacity>
-                    
-                    <TouchableOpacity 
-                        style={[styles.button, styles.registerButton]} 
-                        onPress={() => navigation.navigate('Register')}
-                    >
-                        <Text style={styles.buttonText}>Register</Text>
-                    </TouchableOpacity>
-                </SafeAreaView>
+                    <SafeAreaView style={styles.buttonContainer}>
+                        <TouchableOpacity 
+                            style={styles.button} 
+                            onPress={() => navigation.navigate('Login')}
+                        >
+                            <Text style={styles.buttonText}>Login</Text>
+                        </TouchableOpacity>
+                        
+                        <TouchableOpacity 
+                            style={styles.button} 
+                            onPress={() => navigation.navigate('Register')}
+                        >
+                            <Text style={styles.buttonText}>Register</Text>
+                        </TouchableOpacity>
+                    </SafeAreaView>
+                </View>
             </View>
         </ImageBackground>
     );
@@ -78,44 +79,43 @@ const styles = StyleSheet.create({
         flex: 1,
         width: '100%',
         height: '100%',
-        justifyContent: 'center',
-        alignItems: 'center',
     },
     overlay: {
         flex: 1,
-        width: '100%',
-        alignItems: 'center',
-        justifyContent: 'center',
-        backgroundColor: 'rgba(0, 0, 0, 0.6)', // Dark overlay for contrast
+        backgroundColor: 'rgba(0, 0, 0, 0.6)',
+        justifyContent: 'flex-end',
+    },
+    bottomContainer: {
         paddingHorizontal: 20,
+        paddingBottom: 50,
+        alignItems: 'center',
     },
     welcomeText: {
-        fontSize: 20,
-        fontWeight: '600',
-        textAlign: 'center',
+        fontSize: 16,
+        fontWeight: 'bold',
+        fontFamily: 'Arial',
         color: 'white',
-        marginBottom: 30,
+        textAlign: 'center',
+        marginBottom: 40, // nice space above login
+        width: 323,
     },
     buttonContainer: {
         width: '100%',
         alignItems: 'center',
     },
     button: {
-        backgroundColor: '#FFA500',
-        paddingVertical: 14,
-        paddingHorizontal: 40,
-        borderRadius: 25,
+        backgroundColor: '#FFCD70',
+        height: 45,
+        borderRadius: 40,
+        justifyContent: 'center',
+        alignItems: 'center',
         marginBottom: 15,
         width: '80%',
-        alignItems: 'center',
-    },
-    registerButton: {
-        backgroundColor: '#00A676',
     },
     buttonText: {
         fontSize: 16,
         fontWeight: 'bold',
-        color: 'white',
+        color: 'black',
     },
 });
 
